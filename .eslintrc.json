@@ -28,7 +28,8 @@
             "style": "camelCase"
           }
         ],
-        "@angular-eslint/component-class-suffix": "off"
+        "@angular-eslint/component-class-suffix": "off",
+				"@angular-eslint/no-empty-lifecycle-method": "off"
       }
     },
     {

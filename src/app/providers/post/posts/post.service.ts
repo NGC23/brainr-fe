@@ -9,7 +9,7 @@ export class PostService {
 
  data: any;
 
- constructor(public http: HttpClient) {}
+ constructor(private http: HttpClient) {}
 
  async getPosts(): Promise<any> {
   return fetch("../../../assets/data/data.json").then(res=>res.json()).then(json=>{

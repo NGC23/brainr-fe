@@ -16,8 +16,8 @@ export class SignupPage {
   submitted = false;
 
   constructor(
-    public router: Router,
-		public signUpService: SignUpService,
+    private router: Router,
+		private signUpService: SignUpService,
 		private menu: MenuController,
 		private toastController: ToastController
   ) {}

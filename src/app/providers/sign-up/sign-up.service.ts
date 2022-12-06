@@ -9,7 +9,7 @@ import { API_BASE_URL } from '../../../environments/environment';
 export class SignUpService {
 
 	constructor(
-		public http: HttpClient
+		private http: HttpClient
 	) { }
 
 	signUp(

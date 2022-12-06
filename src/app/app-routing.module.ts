@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { CheckTutorial } from './providers/check-tutorial.service';
+import { AuthgaurdService } from './providers/auth/authgaurd.service';
 
 /**
  * All general single pages go here, these that appear in the menu are located
@@ -16,11 +17,13 @@ const routes: Routes = [
   },
   {
     path: 'account',
-    loadChildren: () => import('./pages/account/account.module').then(m => m.AccountModule)
+    loadChildren: () => import('./pages/account/account.module').then(m => m.AccountModule),
+		canActivate: [AuthgaurdService],
   },
   {
     path: 'support',
-    loadChildren: () => import('./pages/support/support.module').then(m => m.SupportModule)
+    loadChildren: () => import('./pages/support/support.module').then(m => m.SupportModule),
+		canActivate: [AuthgaurdService],
   },
   {
     path: 'login',
@@ -32,12 +35,14 @@ const routes: Routes = [
   },
   {
     path: 'app',
-    loadChildren: () => import('./pages/tabs-page/tabs-page.module').then(m => m.TabsModule)
+    loadChildren: () => import('./pages/tabs-page/tabs-page.module').then(m => m.TabsModule),
+		canActivate: [AuthgaurdService],
   },
   {
     path: 'tutorial',
     loadChildren: () => import('./pages/tutorial/tutorial.module').then(m => m.TutorialModule),
-    canLoad: [CheckTutorial]
+    canLoad: [CheckTutorial],
+		canActivate: [AuthgaurdService],
   }
 ];
 

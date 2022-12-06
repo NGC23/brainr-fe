@@ -13,8 +13,8 @@ export class LoginService {
 	HAS_LOGGED_IN = 'hasLoggedIn';
 
   constructor(
-		public http: HttpClient,
-		public storage: Storage
+		private http: HttpClient,
+		private storage: Storage
 	) { }
 
 	login(
