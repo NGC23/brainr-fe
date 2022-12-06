@@ -65,7 +65,7 @@ export class AppComponent implements OnInit {
   }
 
   async ngOnInit() {
-		this.storage.get(this.loginService.HAS_LOGGED_IN).then(data => {
+		await this.storage.get(this.loginService.HAS_LOGGED_IN).then(data => {
 			this.loggedIn = data;
 		});
   }
@@ -74,7 +74,7 @@ export class AppComponent implements OnInit {
   logout() {
     this.userData.logout().then(() => {
       this.storage.remove("hasLoggedIn");
-      return this.router.navigate(['/login']);
+      return this.router.navigate(['/login'],);
     });
   }
 

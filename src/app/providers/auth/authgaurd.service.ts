@@ -14,11 +14,11 @@ export class AuthgaurdService {
 		private loginService: LoginService
 	) {}
 
-  canActivate(route: ActivatedRouteSnapshot): boolean {
+  async canActivate(route: ActivatedRouteSnapshot): Promise<boolean> {
     console.log(route);
     let authenticated: boolean;
 		
-		this.storage.get(this.loginService.HAS_LOGGED_IN).then(data => {
+		await this.storage.get(this.loginService.HAS_LOGGED_IN).then(data => {
 			authenticated = data;
 		});
 

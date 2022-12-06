@@ -64,15 +64,18 @@ const routes: Routes = [
        children: [
          {
            path: '',
-           loadChildren: () => import('../posts/my-posts/my-posts.module').then(m => m.MyPostsPageModule)
+           loadChildren: () => import('../posts/my-posts/my-posts.module').then(m => m.MyPostsPageModule),
+					 canActivate: [AuthgaurdService]
          },
          {
           path: 'create-post',
-          loadChildren: () => import('../posts/create-post/create-post.module').then( m => m.CreatePostPageModule)
+          loadChildren: () => import('../posts/create-post/create-post.module').then( m => m.CreatePostPageModule),
+					canActivate: [AuthgaurdService]
         },
         {
           path: 'create-video-post',
-          loadChildren: () => import('../posts/create-video-post/create-video-post.module').then( m => m.CreateVideoPostPageModule)
+          loadChildren: () => import('../posts/create-video-post/create-video-post.module').then( m => m.CreateVideoPostPageModule),
+					canActivate: [AuthgaurdService]
         }
        ]
       },
@@ -81,20 +84,22 @@ const routes: Routes = [
        children: [
          {
            path: '',
-           loadChildren: () => import('../dashboard/my-dashboard/my-dashboard.module').then( m => m.MyDashboardPageModule)
+           loadChildren: () => import('../dashboard/my-dashboard/my-dashboard.module').then( m => m.MyDashboardPageModule),
+					 canActivate: [AuthgaurdService]
          }
        ]
       },
       {
         path: 'my-feed',
-        loadChildren: () => import('../feed/my-feed/my-feed.module').then( m => m.MyFeedPageModule)
+        loadChildren: () => import('../feed/my-feed/my-feed.module').then( m => m.MyFeedPageModule),
+				canActivate: [AuthgaurdService]
       },
       {
        path: 'notifications',
-       loadChildren: () => import('../notifications/notifications.module').then( m => m.NotificationsPageModule)
+       loadChildren: () => import('../notifications/notifications.module').then( m => m.NotificationsPageModule),
+			 canActivate: [AuthgaurdService]
       },
-    ],
-		canActivate: [AuthgaurdService],
+    ]
   }
 ];
 
