@@ -10,6 +10,7 @@ import { SplashScreen } from '@capacitor/splash-screen';
 import { Storage } from '@ionic/storage';
 
 import { UserData } from './providers/user-data';
+import { LoginService } from './providers/login/login.service';
 
 @Component({
   selector: 'app-root',
@@ -18,6 +19,11 @@ import { UserData } from './providers/user-data';
   encapsulation: ViewEncapsulation.None
 })
 export class AppComponent implements OnInit {
+	//class properties
+	loggedIn = false; 
+	dark = true; // dark theme toggle
+
+	//Application sidemenu pages
   appPages = [
     {
      title: 'Dashboard',
@@ -41,9 +47,6 @@ export class AppComponent implements OnInit {
     }
   ];
 
-  loggedIn = false;
-  dark = true;
-
   //Testing
   user = {
    name: "Neil",
@@ -54,75 +57,19 @@ export class AppComponent implements OnInit {
 
   constructor(
     private menu: MenuController,
-    private platform: Platform,
     private router: Router,
     private storage: Storage,
     private userData: UserData,
-    private swUpdate: SwUpdate,
-    private toastCtrl: ToastController,
+		private loginService: LoginService
   ) {
-    this.initializeApp();
   }
 
   async ngOnInit() {
-    this.checkLoginStatus();
-    this.listenForLoginEvents();
-
-    this.swUpdate.available.subscribe(async res => {
-      const toast = await this.toastCtrl.create({
-        message: 'Update available!',
-        position: 'bottom',
-        buttons: [
-          {
-            role: 'cancel',
-            text: 'Reload'
-          }
-        ]
-      });
-
-      await toast.present();
-
-      toast
-        .onDidDismiss()
-        .then(() => this.swUpdate.activateUpdate())
-        .then(() => window.location.reload());
-    });
+		this.storage.get(this.loginService.HAS_LOGGED_IN).then(data => {
+			this.loggedIn = data;
+		});
   }
 
-  initializeApp() {
-    this.platform.ready().then(() => {
-      if (this.platform.is('hybrid')) {
-        StatusBar.hide();
-        SplashScreen.hide();
-      }
-    });
-  }
-
-  checkLoginStatus() {
-    return this.userData.isLoggedIn().then(loggedIn => {
-      return this.updateLoggedInStatus(loggedIn);
-    });
-  }
-
-  updateLoggedInStatus(loggedIn: boolean) {
-    setTimeout(() => {
-      this.loggedIn = loggedIn;
-    }, 300);
-  }
-
-  listenForLoginEvents() {
-    window.addEventListener('user:login', () => {
-      this.updateLoggedInStatus(true);
-    });
-
-    window.addEventListener('user:signup', () => {
-      this.updateLoggedInStatus(true);
-    });
-
-    window.addEventListener('user:logout', () => {
-      this.updateLoggedInStatus(false);
-    });
-  }
 
   logout() {
     this.userData.logout().then(() => {

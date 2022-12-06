@@ -6,7 +6,10 @@ import { Storage } from '@ionic/storage';
 import { UserData } from '../../providers/user-data';
 
 import { UserOptions } from '../../interfaces/user-options';
-import { MenuController } from '@ionic/angular';
+import { MenuController, ToastController } from '@ionic/angular';
+import { LoginService } from '../../providers/login/login.service';
+import { error } from '@angular/compiler/src/util';
+import { Token } from '../../interfaces/Token/token';
 
 
 
@@ -23,25 +26,52 @@ export class LoginPage {
     public userData: UserData,
     public router: Router,
     public storage: Storage,
-    private menu: MenuController
+    private menu: MenuController,
+		private loginService: LoginService,
+		private toastController: ToastController
   ) { }
 
   ngOnInit() {
    this.menu.enable(false);
   }
 
-  onLogin(form: NgForm) {
+  async onLogin(form: NgForm): Promise<void> {
     this.submitted = true;
-
+	
     if (form.valid) {
-      this.storage.set("hasLoggedIn", true);
-      this.userData.login(this.login.username);
-      this.menu.enable(true);
-      this.router.navigateByUrl('/app/brainr/dashboard');
+			this.loginService.login(form.value.username, form.value.password).subscribe({
+        next: data => {
+            console.log("data", data);
+						this.storage.set("hasLoggedIn", true);
+						this.storage.set(this.loginService.ACCESS_TOKEN, data.access_token)
+						this.menu.enable(true);
+						this.router.navigateByUrl('/app/brainr/dashboard');
+        },
+        error: error => {
+					this.displayMessage(error.error.message);
+					console.log("error", error);
+        }
+    	});
     }
   }
 
-  onSignup() {
+  onSignup(): void {
     this.router.navigateByUrl('/signup');
   }
+
+	async displayMessage(msg: string): Promise<void> {
+		const toast = await this.toastController.create({
+			message: msg,
+			duration: 3000,
+			// cssClass: 'custom-toast',
+			buttons: [
+				{
+					text: 'Dismiss',
+					role: 'cancel'
+				}
+			],
+		});
+
+		await toast.present();
+	}
 }

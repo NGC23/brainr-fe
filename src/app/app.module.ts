@@ -24,7 +24,9 @@ import { FormsModule } from '@angular/forms';
     })
   ],
   declarations: [AppComponent],
-  providers: [InAppBrowser],
+  providers: [
+		InAppBrowser
+	],
   bootstrap: [AppComponent]
 })
 export class AppModule {}
