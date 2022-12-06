@@ -15,8 +15,8 @@ export class CreatePostPage implements OnInit {
  submitted = false;
 
   constructor(
-   public router: Router,
-   public userData: UserData
+   private router: Router,
+   private userData: UserData
   ) { }
 
   ngOnInit() {

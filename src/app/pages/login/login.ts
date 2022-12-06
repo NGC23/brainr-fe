@@ -23,9 +23,9 @@ export class LoginPage {
   submitted = false;
 
   constructor(
-    public userData: UserData,
-    public router: Router,
-    public storage: Storage,
+    private userData: UserData,
+    private router: Router,
+    private storage: Storage,
     private menu: MenuController,
 		private loginService: LoginService,
 		private toastController: ToastController
