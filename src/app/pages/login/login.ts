@@ -45,7 +45,10 @@ export class LoginPage {
 						this.storage.set("hasLoggedIn", true);
 						this.storage.set(this.loginService.ACCESS_TOKEN, data.access_token)
 						this.menu.enable(true);
-						this.router.navigateByUrl('/app/brainr/dashboard');
+						this.router.navigate(['/app/brainr/dashboard']).then(() => {
+							window.location.reload();
+						});
+						// this.router.navigateByUrl('/app/brainr/dashboard');
         },
         error: error => {
 					this.displayMessage(error.error.message);
