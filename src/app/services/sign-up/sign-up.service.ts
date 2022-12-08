@@ -18,8 +18,9 @@ export class SignUpService {
 		password: string
 	): Observable<Object> {
 		try {
+			//TODO: Refactor calls to better more moderns standars
 			return this.http.post<Object>(
-				API_BASE_URL + 'sign-up', 
+				`${API_BASE_URL}/sign-up`,  
 				{
 					email: email,
 					password: password,

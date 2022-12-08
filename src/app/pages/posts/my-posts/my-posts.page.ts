@@ -1,7 +1,7 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
 import { AlertController, Config, IonList, IonRouterOutlet, LoadingController, ModalController, ToastController } from '@ionic/angular';
-import { PostService } from '../../../providers/post/posts/post.service';
+import { PostService } from '../../../services/post/posts/post.service';
 
 @Component({
   selector: 'app-my-posts',

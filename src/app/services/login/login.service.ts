@@ -22,8 +22,9 @@ export class LoginService {
 		password: string
 	): Observable<Token> {
 		try {
+			//TODO: Refactor calls to better more moderns standars
 			return this.http.post<Token>(
-				API_BASE_URL + 'login', 
+				`${API_BASE_URL}/login`, 
 				{
 					email: email,
 					password: password

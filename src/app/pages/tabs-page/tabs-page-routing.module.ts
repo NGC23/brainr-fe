@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { TabsPage } from './tabs-page';
 import { SchedulePage } from '../schedule/schedule';
-import { AuthgaurdService } from '../../providers/auth/authgaurd.service';
+import { AuthgaurdService } from '../../services/auth/authgaurd.service';
 
 
 const routes: Routes = [
@@ -11,72 +11,38 @@ const routes: Routes = [
     component: TabsPage,
     children: [
       {
-        path: 'schedule',
-        children: [
-          {
-            path: '',
-            component: SchedulePage,
-          },
-          {
-            path: 'session/:sessionId',
-            loadChildren: () => import('../session-detail/session-detail.module').then(m => m.SessionDetailModule)
-          }
-        ]
-      },
-      {
-        path: 'speakers',
-        children: [
-          {
-            path: '',
-            loadChildren: () => import('../speaker-list/speaker-list.module').then(m => m.SpeakerListModule)
-          },
-          {
-            path: 'session/:sessionId',
-            loadChildren: () => import('../session-detail/session-detail.module').then(m => m.SessionDetailModule)
-          },
-          {
-            path: 'speaker-details/:speakerId',
-            loadChildren: () => import('../speaker-detail/speaker-detail.module').then(m => m.SpeakerDetailModule)
-          }
-        ]
-      },
-      {
-        path: 'map',
-        children: [
-          {
-            path: '',
-            loadChildren: () => import('../map/map.module').then(m => m.MapModule)
-          }
-        ]
-      },
-      {
-        path: 'about',
-        children: [
-          {
-            path: '',
-            loadChildren: () => import('../about/about.module').then(m => m.AboutModule)
-          }
-        ]
-      },
-      //New Pages
-      {
        path: 'posts',
        children: [
-         {
-           path: '',
-           loadChildren: () => import('../posts/my-posts/my-posts.module').then(m => m.MyPostsPageModule),
-					 canActivate: [AuthgaurdService]
-         },
-         {
-          path: 'create-post',
-          loadChildren: () => import('../posts/create-post/create-post.module').then( m => m.CreatePostPageModule),
-					canActivate: [AuthgaurdService]
-        },
-        {
-          path: 'create-video-post',
-          loadChildren: () => import('../posts/create-video-post/create-video-post.module').then( m => m.CreateVideoPostPageModule),
-					canActivate: [AuthgaurdService]
-        }
+         	{
+						path: '',
+						loadChildren: () => import('../posts/my-posts/my-posts.module').then(m => m.MyPostsPageModule),
+						canActivate: [AuthgaurdService]
+         	},
+         	{
+						path: 'create-image-post',
+						loadChildren: () => import('../posts/create-image-post/create-image-post.module').then( m => m.CreateImagePostPageModule),
+						canActivate: [AuthgaurdService]
+					},
+					{
+						path: 'create-audio-post',
+						loadChildren: () => import('../posts/create-audio-post/create-audio-post.module').then( m => m.CreateAudioPostPageModule),
+						canActivate: [AuthgaurdService]
+					},
+					{
+						path: 'create-document-post',
+						loadChildren: () => import('../posts/create-document-post/create-document-post.module').then( m => m.CreateDocumentPostPageModule),
+						canActivate: [AuthgaurdService]
+					},
+					{
+						path: 'create-qa-post',
+						loadChildren: () => import('../posts/create-qa-post/create-qa-post.module').then( m => m.CreateQaPostPageModule),
+						canActivate: [AuthgaurdService]
+					},
+					{
+						path: 'create-video-post',
+						loadChildren: () => import('../posts/create-video-post/create-video-post.module').then( m => m.CreateVideoPostPageModule),
+						canActivate: [AuthgaurdService]
+					}
        ]
       },
       {
