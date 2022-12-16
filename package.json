@@ -1,9 +1,9 @@
 {
-  "name": "ionic-conference-app",
+  "name": "brainr-frontend-app",
   "version": "0.0.0",
-  "description": "Ionic Conference App",
-  "author": "Ionic Team <hi@ionicframework.com>",
-  "license": "Apache-2.0",
+  "description": "Brainr frontend",
+  "author": "Neil Clulow",
+  "license": "",
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
@@ -11,10 +11,6 @@
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "npx webdriver-manager update --standalone false --gecko false --versions.chrome=99.0.4844.83 && ng e2e --no-webdriver-update"
-  },
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/ionic-team/ionic-conference-app.git"
   },
   "private": true,
   "dependencies": {

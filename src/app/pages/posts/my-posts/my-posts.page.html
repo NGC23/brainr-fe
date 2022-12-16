@@ -26,14 +26,14 @@
    </ion-buttons>
  </ion-toolbar>
  <ion-toolbar *ngIf="!ios">
-   <ion-segment [(ngModel)]="segment" (ionChange)="updateSchedule()">
+   <ion-segment [(ngModel)]="segment">
      <ion-segment-button value="all">
        All
      </ion-segment-button>
-     <ion-segment-button value="posts">
+     <ion-segment-button value="first">
        Posts
      </ion-segment-button>
-     <ion-segment-button value="video-posts">
+     <ion-segment-button value="second">
       Video Posts
     </ion-segment-button>
    </ion-segment>
@@ -50,10 +50,39 @@
    </ion-toolbar>
  </ion-header>
 
+ <!-- <div [ngSwitch]="segment">
+	<ion-card *ngSwitchCase="'first'">
+		<ion-card-header>
+			First Content
+		</ion-card-header>
+		<ion-card-content>
+			First Content here
+		</ion-card-content>
+	</ion-card>
+
+	<ion-card *ngSwitchCase="'second'">
+		<ion-card-header>
+			Second Header
+		</ion-card-header>
+		<ion-card-content>
+			Second content here
+		</ion-card-content>
+	</ion-card>
+
+	<ion-card *ngSwitchCase="'third'">
+		<ion-card-header>
+			Third Header
+		</ion-card-header>
+		<ion-card-content>
+			Third content
+		</ion-card-content>
+	</ion-card>
+</div> -->
+
  <ion-list #postList>
    <ion-item-group *ngFor="let post of posts">
      <ion-item-sliding>
-       <ion-item routerLink="/app/tabs/schedule/session/{{post.id}}">
+       <ion-item routerLink="/app/tabs/posts/{{post.id}}">
          <ion-label>
            <h3>{{post.name}}</h3>
            <p>
@@ -79,12 +108,18 @@
      <ion-icon name="add"></ion-icon>
    </ion-fab-button>
    <ion-fab-list side="top">
-     <ion-fab-button href="/app/brainr/posts/create-post">
+     <ion-fab-button href="/app/brainr/posts/create-qa-post">
        <ion-icon name="text"></ion-icon>
      </ion-fab-button>
      <ion-fab-button href="/app/brainr/posts/create-video-post">
        <ion-icon name="film"></ion-icon>
      </ion-fab-button>
+		 <ion-fab-button href="/app/brainr/posts/create-audio-post">
+			<ion-icon name="recording"></ion-icon>
+		</ion-fab-button>
+		<ion-fab-button href="/app/brainr/posts/create-image-post">
+			<ion-icon name="image"></ion-icon>
+		</ion-fab-button>
    </ion-fab-list>
  </ion-fab>
 </ion-content>

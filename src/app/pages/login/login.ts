@@ -3,11 +3,11 @@ import { NgForm } from '@angular/forms';
 import { Router } from '@angular/router';
 import { Storage } from '@ionic/storage';
 
-import { UserData } from '../../providers/user-data';
+import { UserData } from '../../services/user-data';
 
 import { UserOptions } from '../../interfaces/user-options';
 import { MenuController, ToastController } from '@ionic/angular';
-import { LoginService } from '../../providers/login/login.service';
+import { LoginService } from '../../services/login/login.service';
 import { error } from '@angular/compiler/src/util';
 import { Token } from '../../interfaces/Token/token';
 
@@ -45,10 +45,8 @@ export class LoginPage {
 						this.storage.set("hasLoggedIn", true);
 						this.storage.set(this.loginService.ACCESS_TOKEN, data.access_token)
 						this.menu.enable(true);
-						this.router.navigate(['/app/brainr/dashboard']).then(() => {
-							window.location.reload();
-						});
-						// this.router.navigateByUrl('/app/brainr/dashboard');
+						// this.router.navigate(['/app/brainr/dashboard']);
+						this.router.navigateByUrl('/app/brainr/dashboard');
         },
         error: error => {
 					this.displayMessage(error.error.message);

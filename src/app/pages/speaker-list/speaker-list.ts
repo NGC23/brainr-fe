@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { ConferenceData } from '../../providers/conference-data';
+import { ConferenceData } from '../../services/conference-data';
 
 @Component({
   selector: 'page-speaker-list',
