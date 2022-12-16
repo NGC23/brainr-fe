@@ -1,15 +1,15 @@
+import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Storage } from '@ionic/storage';
-import { API_BASE_URL } from '../../../../environments/environment';
-import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
+import { API_BASE_URL } from '../../../../environments/environment';
+import { ImagePost } from '../../../interfaces/posts/image-post';
 import { LoginService } from '../../login/login.service';
-import { VideoPost } from '../../../interfaces/posts/video-post';
 
 @Injectable({
   providedIn: 'root'
 })
-export class VideoPostService {
+export class ImagePostService {
 
 	token: '';
 
@@ -25,12 +25,12 @@ export class VideoPostService {
 	}
 
 	create(
-		post: VideoPost
+		post: ImagePost
 	): Observable<Object> {
 		try {
 			//TODO: Refactor calls to better more moderns standars
 			return this.http.post<Object>(
-				`${API_BASE_URL}/post/create/video`, 
+				`${API_BASE_URL}/post/create/image`, 
 				{
 					name: post.name,
 					caption: post.caption,
@@ -48,4 +48,5 @@ export class VideoPostService {
 			throw new Error("Error on creating post");
 		}
 	}
+	
 }

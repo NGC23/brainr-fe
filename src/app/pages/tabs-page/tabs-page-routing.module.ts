@@ -1,7 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { TabsPage } from './tabs-page';
-import { SchedulePage } from '../schedule/schedule';
 import { AuthgaurdService } from '../../services/auth/authgaurd.service';
 
 
@@ -13,6 +12,10 @@ const routes: Routes = [
       {
        path: 'posts',
        children: [
+					{
+						path: ':postId',
+						loadChildren: () => import('../session-detail/session-detail.module').then(m => m.SessionDetailModule)
+					},
          	{
 						path: '',
 						loadChildren: () => import('../posts/my-posts/my-posts.module').then(m => m.MyPostsPageModule),

@@ -111,7 +111,8 @@ export class AppComponent implements OnInit {
 
   logout() {
     this.userData.logout().then(() => {
-      this.storage.remove("hasLoggedIn");
+      this.storage.remove(this.loginService.HAS_LOGGED_IN);
+      this.storage.remove(this.loginService.ACCESS_TOKEN);
       return this.router.navigate(['/login'],);
     });
   }

@@ -1,7 +1,6 @@
 import { Component } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { Router } from '@angular/router';
-import { UserData } from '../../services/user-data';
 import { UserOptions } from '../../interfaces/user-options';
 import { MenuController, ToastController } from '@ionic/angular';
 import { SignUpService } from '../../services/sign-up/sign-up.service';

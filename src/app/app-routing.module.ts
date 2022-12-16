@@ -39,12 +39,6 @@ const routes: Routes = [
 		canActivate: [AuthgaurdService],
   },
   {
-    path: 'tutorial',
-    loadChildren: () => import('./pages/tutorial/tutorial.module').then(m => m.TutorialModule),
-    canLoad: [CheckTutorial],
-		canActivate: [AuthgaurdService],
-  },
-  {
     path: 'create-qa-post',
     loadChildren: () => import('./pages/posts/create-qa-post/create-qa-post.module').then( m => m.CreateQaPostPageModule)
   },
@@ -59,6 +53,10 @@ const routes: Routes = [
   {
     path: 'create-document-post',
     loadChildren: () => import('./pages/posts/create-document-post/create-document-post.module').then( m => m.CreateDocumentPostPageModule)
+  },
+  {
+    path: 'post-detail',
+    loadChildren: () => import('./pages/post-detail/post-detail.module').then( m => m.PostDetailPageModule)
   }
 ];
 

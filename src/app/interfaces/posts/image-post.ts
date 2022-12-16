@@ -1,5 +1,5 @@
 
-export interface VideoPost {
+export interface ImagePost {
   name: string;
   caption: string;
   tags: string;

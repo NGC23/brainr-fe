@@ -34,8 +34,12 @@ export class MyPostsPage implements OnInit {
   ) { }
 
   async ngOnInit() {
-   console.log("posts", await this.postService.getPosts());
-   this.posts = await this.postService.getPosts();
+  	await this.postService.getPosts().then( data => {
+			data.subscribe(res => {
+				console.log("the fuck >>", res);
+				this.posts = res.data
+			})
+		});
   }
 
   async openSocial(network: string, fab: HTMLIonFabElement) {
