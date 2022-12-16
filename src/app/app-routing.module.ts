@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { CheckTutorial } from './services/check-tutorial.service';
-import { AuthgaurdService } from './services/auth/authgaurd.service';
+import { CheckTutorial } from './providers/check-tutorial.service';
+import { AuthgaurdService } from './providers/auth/authgaurd.service';
 
 /**
  * All general single pages go here, these that appear in the menu are located
@@ -39,24 +39,10 @@ const routes: Routes = [
 		canActivate: [AuthgaurdService],
   },
   {
-    path: 'create-qa-post',
-    loadChildren: () => import('./pages/posts/create-qa-post/create-qa-post.module').then( m => m.CreateQaPostPageModule)
-  },
-  {
-    path: 'create-audio-post',
-    loadChildren: () => import('./pages/posts/create-audio-post/create-audio-post.module').then( m => m.CreateAudioPostPageModule)
-  },
-  {
-    path: 'create-image-post',
-    loadChildren: () => import('./pages/posts/create-image-post/create-image-post.module').then( m => m.CreateImagePostPageModule)
-  },
-  {
-    path: 'create-document-post',
-    loadChildren: () => import('./pages/posts/create-document-post/create-document-post.module').then( m => m.CreateDocumentPostPageModule)
-  },
-  {
-    path: 'post-detail',
-    loadChildren: () => import('./pages/post-detail/post-detail.module').then( m => m.PostDetailPageModule)
+    path: 'tutorial',
+    loadChildren: () => import('./pages/tutorial/tutorial.module').then(m => m.TutorialModule),
+    canLoad: [CheckTutorial],
+		canActivate: [AuthgaurdService],
   }
 ];
 

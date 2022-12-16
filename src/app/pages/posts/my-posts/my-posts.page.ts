@@ -1,7 +1,7 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
 import { AlertController, Config, IonList, IonRouterOutlet, LoadingController, ModalController, ToastController } from '@ionic/angular';
-import { PostService } from '../../../services/post/posts/post.service';
+import { PostService } from '../../../providers/post/posts/post.service';
 
 @Component({
   selector: 'app-my-posts',
@@ -34,12 +34,8 @@ export class MyPostsPage implements OnInit {
   ) { }
 
   async ngOnInit() {
-  	await this.postService.getPosts().then( data => {
-			data.subscribe(res => {
-				console.log("the fuck >>", res);
-				this.posts = res.data
-			})
-		});
+   console.log("posts", await this.postService.getPosts());
+   this.posts = await this.postService.getPosts();
   }
 
   async openSocial(network: string, fab: HTMLIonFabElement) {

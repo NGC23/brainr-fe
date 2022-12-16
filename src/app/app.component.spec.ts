@@ -5,7 +5,7 @@ import { TestBed, waitForAsync } from '@angular/core/testing';
 import { MenuController, Platform } from '@ionic/angular';
 import { IonicStorageModule } from '@ionic/storage';
 import { AppComponent } from './app.component';
-import { UserData } from './services/user-data';
+import { UserData } from './providers/user-data';
 
 describe('AppComponent', () => {
   let menuSpy,

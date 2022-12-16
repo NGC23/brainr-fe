@@ -27,7 +27,7 @@
           </ion-menu-toggle>
         </ion-list>
 
-        <ion-list lines="none">
+        <ion-list *ngIf="loggedIn" lines="none">
           <ion-list-header>
             Account
           </ion-list-header>
