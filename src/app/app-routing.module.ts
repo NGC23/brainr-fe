@@ -55,7 +55,7 @@ const routes: Routes = [
     loadChildren: () => import('./pages/posts/create-document-post/create-document-post.module').then( m => m.CreateDocumentPostPageModule)
   },
   {
-    path: 'post-detail',
+    path: 'app/tabs/posts/detail/:postId',
     loadChildren: () => import('./pages/post-detail/post-detail.module').then( m => m.PostDetailPageModule)
   }
 ];

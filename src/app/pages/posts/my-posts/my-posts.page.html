@@ -25,7 +25,7 @@
      </ion-button>
    </ion-buttons>
  </ion-toolbar>
- <ion-toolbar *ngIf="!ios">
+ <!-- <ion-toolbar *ngIf="!ios">
    <ion-segment [(ngModel)]="segment">
      <ion-segment-button value="all">
        All
@@ -37,7 +37,7 @@
       Video Posts
     </ion-segment-button>
    </ion-segment>
- </ion-toolbar>
+ </ion-toolbar> -->
 </ion-header>
 
 <ion-content fullscreen="true">
@@ -82,7 +82,7 @@
  <ion-list #postList>
    <ion-item-group *ngFor="let post of posts">
      <ion-item-sliding>
-       <ion-item routerLink="/app/tabs/posts/{{post.id}}">
+       <ion-item routerLink="/app/tabs/posts/detail/{{post.id}}">
          <ion-label>
            <h3>{{post.name}}</h3>
            <p>
