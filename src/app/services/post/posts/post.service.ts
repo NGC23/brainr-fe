@@ -20,6 +20,7 @@ export class PostService {
 		private loginService: LoginService
 	) { 
 	}
+	//TODO: Type the returns
 
 	async getPosts():  Promise<Observable<any>> {
 
@@ -29,6 +30,20 @@ export class PostService {
 	});
 
   return this.http.get<any>(`${API_BASE_URL}/posts`,{
+		headers: {
+			"Authorization": `Bearer ${this.token}`
+		}
+	});        
+ }
+
+ async getPostById(id: string):  Promise<Observable<any>> {
+
+	await this.storage.get(this.loginService.ACCESS_TOKEN).then(data => {
+		console.log("token", data);
+		this.token = data;	
+	});
+
+  return this.http.get<any>(`${API_BASE_URL}/posts/${id}`,{
 		headers: {
 			"Authorization": `Bearer ${this.token}`
 		}

@@ -13,8 +13,8 @@ const routes: Routes = [
        path: 'posts',
        children: [
 					{
-						path: ':postId',
-						loadChildren: () => import('../session-detail/session-detail.module').then(m => m.SessionDetailModule)
+						path: 'detail/:postId',
+						loadChildren: () => import('../post-detail/post-detail.module').then(m => m.PostDetailPageModule)
 					},
          	{
 						path: '',
